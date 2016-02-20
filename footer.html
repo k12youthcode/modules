@@ -1,0 +1,145 @@
+
+<!-- <footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; Shop Cart 2015</p>
+			</div>
+		</div>
+	</footer> -->
+
+
+
+<!--  Login POPUP -->
+
+<div class="modal fade login" tabindex="-1" role="dialog"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sign In</h3>
+					<button style="display:none;" id="close-lg-btn"  type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						Close
+					</button>
+				</div>
+				<div class="panel-body">
+					<form role="form">
+						<fieldset>
+							<div class="form-group">
+								<input id="login-email" class="form-control" placeholder="E-mail" name="email"
+									type="email" autofocus="">
+							</div>
+							<div class="form-group">
+								<input id="login-password" class="form-control" placeholder="Password"
+									name="password" type="password" value="">
+							</div>
+							
+							<!-- Change this to a button or input when using this as a form -->
+							<a href="javascript:;" onclick="login();" class="btn btn-sm btn-success">Login</a>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--  Register POP UP -->
+
+<div class="modal fade register" tabindex="-1" role="dialog"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Register with us</h3>
+					<button style="display:none;" id="close-rg-btn"  type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						Close
+					</button>
+				</div>
+				
+				<div class="panel-body">
+					<form role="form">
+						<fieldset>
+							<div class="form-group">
+								<input id="email-rgs" class="form-control" placeholder="E-mail" name="email"
+									type="email" autofocus="">
+							</div>
+							<div class="form-group">
+								<input id="password-rgs" class="form-control" placeholder="Password"
+									name="password" type="password" value="">
+							</div>
+							
+							<div  class="form-group">
+								<input id="repwd-rgs" class="form-control" placeholder="Re Password"
+									name="repassword" type="password" value="">
+							</div>
+							
+							<div class="form-group">
+								<input id="addrs-rgs" class="form-control" placeholder="Address"
+									name="address" type="text" value="">
+							</div>
+							
+							<div class="form-group">
+								<input id="firstName-rgs" class="form-control" placeholder="firstname"
+									name="firstname" type="text" value="">
+							</div>
+							
+							<div class="form-group">
+								<input id="lastName-rgs" class="form-control" placeholder="lastname"
+									name="lastname" type="text" value="">
+							</div>
+							
+						
+							
+							<div class="form-group">
+								<input id="postCode-rgs" class="form-control" placeholder="Post code"
+									name="code" type="text" value="">
+							</div>
+							
+							<div class="form-group">
+								<input id="phone-rgs" class="form-control" placeholder="phone" type="text" value="">
+							</div>
+							<!-- Change this to a button or input when using this as a form -->
+							<a href="javascript:;" onclick="saveUser()" class="btn btn-sm btn-success">Register</a>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade cnfrm" tabindex="-1" role="dialog"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Please Register or Login .</h3>
+					<button style="display:none;" id="close-lg-btn-cnfrm"  type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						Close
+					</button>
+				</div>
+				<div class="panel-body">
+				
+					
+							
+					<a href="javascript:;" onclick="$('#close-lg-btn-cnfrm').click()" data-toggle="modal" data-target=".login" class="btn btn-sm btn-success">Login</a>
+					<a href="javascript:;" onclick="$('#close-lg-btn-cnfrm').click()" data-toggle="modal" data-target=".register" class="btn btn-sm btn-success">Register</a>
+						
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <a  id="temp-cnf" style="display:none;" href="javascript:void(0)"  data-toggle="modal" data-target=".cnfrm">Sign In</a>
+
