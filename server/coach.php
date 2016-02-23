@@ -60,6 +60,13 @@ if($type == "getTeamRating"){
 	getTeamRating($data);
 
 }
+if($type == "getTeamRanking"){
+
+	getTeamRanking($data);
+
+}
+
+
 
 
 
@@ -368,6 +375,30 @@ function getTeamRating($data){
 	$teamId = $data["teamId"];
 	$array = array();
 	$sql = "SELECT sum(vr.rating) as rating FROM video_rating vr , links l where l.id = vr.link_id AND  l.team_id = '$teamId'  ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+
+	
+
+	echo json_encode($array);
+}
+
+function getTeamRanking($data){
+	$teamIds = $data["teamIds"];
+	$array = array();
+	$sql = "SELECT sum(vr.rating) as rating , l.team_id , t.name FROM video_rating vr , links l , team t	 where t.id=l.team_id and  l.id = vr.link_id AND  l.team_id IN ($teamIds) GROUP by l.team_id  ";
+
 	$retval = mysql_query( $sql );
 	
 	if(! $retval )

@@ -1,5 +1,6 @@
 var user  = null ;
 var team_players = [] ;
+var teamsids =[];
 $(document).ready(function() {
 
 	 user = sessionStorage.getItem("user");
@@ -54,11 +55,51 @@ $(document).ready(function() {
 });
 
 
+function getTeamRanking(){
+	
+
+
+	var teamId = teamsids.toString();
+	
+	var data = { teamIds :teamId } ;
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "getTeamRanking",
+			data : data
+		},
+		success : function(response) {
+		
+		
+			if(response != ""){
+				var data = JSON.parse(response);
+				var html ="";
+				for(var i in data){
+					html+="<tr>"
+						html+="<td>"+data[i].name+"</td>"
+						html+="<td>"+data[i].rating+"</td>"
+					html+="</tr>"
+					
+					
+				}
+				
+				$("#standings").html(html)
+			}
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+}
+
 function loadTeam(element){
 	$(".coachTable").hide();
 	var coachId = $(element).data("coachid");
 	var data = { coachId : coachId};
-	
+	$("#standingBtn").hide();
 	$.ajax({
 		type : 'POST',
 		url : 'server/coach.php',
@@ -80,10 +121,12 @@ function loadTeam(element){
 					html +='<td><button onclick="loadScore(this)" data-teamId="'+response[i].id+'" data-toggle="modal" data-target="#scorePP" type="button" class="btn btn-default" >Team Average Score</button></td>';
 					
 				html += "</tr>";
-				
+				teamsids.push(response[i].id);
+				$("#standingBtn").show();
 				$("#teamList").append(html);
 			}
 
+			
 		},
 		error : function(data) {
 			alert("Server Error please contact admin")

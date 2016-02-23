@@ -1,5 +1,6 @@
 var user  = null ;
 var team_players = [] ;
+var teamsids =[];
 $(document).ready(function() {
 
 	 user = sessionStorage.getItem("user");
@@ -45,9 +46,12 @@ $(document).ready(function() {
 						html +='<td><button onclick="loadLinks(this)" data-teamId="'+response[i].id+'" data-toggle="modal" data-target="#addVideos" type="button" class="btn btn-default" >Upload Videos.</button></td>';
 						html +='<td><button onclick="loadScore(this)" data-teamId="'+response[i].id+'" data-toggle="modal" data-target="#scorePP" type="button" class="btn btn-default" >Team Average Score</button></td>';
 						html += "</tr>";
-					
+						
+						teamsids.push(response[i].id);
 					$("#coachList").append(html);
 				}
+				
+				
 
 			},
 			error : function(data) {
@@ -348,6 +352,46 @@ function loadScore(element){
 					$("#score").html(""+score);
 				}
 				
+			}
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+}
+
+function getTeamRanking(){
+	
+
+
+	var teamId = teamsids.toString();
+	
+	var data = { teamIds :teamId } ;
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "getTeamRanking",
+			data : data
+		},
+		success : function(response) {
+		
+		
+			if(response != ""){
+				var data = JSON.parse(response);
+				var html ="";
+				for(var i in data){
+					html+="<tr>"
+						html+="<td>"+data[i].name+"</td>"
+						html+="<td>"+data[i].rating+"</td>"
+					html+="</tr>"
+					
+					
+				}
+				
+				$("#standings").html(html)
 			}
 
 		},
