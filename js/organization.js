@@ -77,6 +77,8 @@ function loadTeam(element){
 					html +="<td>"+response[i].name+"</td>";
 					html +="<td>"+user.name+"</td>";
 					html +='<td><button onclick="loadPlayers(this)" data-teamId="'+response[i].id+'" data-toggle="modal" data-target="#addPlayer" type="button" class="btn btn-default" > Players</button></td>';
+					html +='<td><button onclick="loadScore(this)" data-teamId="'+response[i].id+'" data-toggle="modal" data-target="#scorePP" type="button" class="btn btn-default" >Team Average Score</button></td>';
+					
 				html += "</tr>";
 				
 				$("#teamList").append(html);
@@ -88,6 +90,44 @@ function loadTeam(element){
 		}
 	});
 	
+	
+}
+
+function loadScore(element){
+	
+
+
+	var teamId = $(element).data("teamid");
+
+	
+	var data = { teamId :teamId } ;
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "getTeamRating",
+			data : data
+		},
+		success : function(response) {
+			$("#video-list").html("");
+		
+			if(response != ""){
+				var data = JSON.parse(response);
+				if( data[0].rating == null){
+					$("#score").html(""+0);
+				}else{
+					var score = data[0].rating / meta.challenges.length ;
+					
+					$("#score").html(""+score);
+				}
+				
+			}
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
 	
 }
 
