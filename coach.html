@@ -126,6 +126,7 @@
 								<th>Coach</th>
 								<th>--</th>
 								<th>--</th>
+								<th>--</th>
 							</tr>
 						</thead>
 						<tbody id="coachList">
@@ -158,6 +159,23 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" onclick="saveTeam()" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="scorePP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" id="myModalLabel"> Team Average Score</h4>
+				</div>
+				<div class="modal-body">
+					<h3 id="score"></h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
 				</div>
 			</div>
 		</div>
