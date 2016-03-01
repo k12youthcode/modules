@@ -51,7 +51,65 @@ if($type == "saveChallenge")
 	saveChallenge($data);
 }
 
+if($type == "loadLeague")
+{
+	loadLeague($data);
+}
 
+
+function loadLeague($data){
+
+	$state = $data["state"];
+	$county = $data["county"];
+	$league = $state.'_'.$county;
+	$array = array();
+	$sql = "SELECT id as id FROM `league` where name = '$league'  ";
+	$retval = mysql_query( $sql );
+	$exist = false ;
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+			$exist = true ;
+		}
+		
+		if($exist){
+		
+		echo json_encode($array);
+		
+		}else{
+		
+		$sql  = mysql_query("INSERT INTO league (name)
+			VALUES ('$league'  )");
+			
+			
+	$sql = "SELECT Max(id) as id FROM `league`    ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+		echo json_encode($array);
+		}
+		
+	}
+
+	
+
+}
 
 
 function updateCustomer($data){
@@ -220,6 +278,8 @@ function registerUser($data){
 	$state = $data["state"];
 	$county = $data["county"];
 	$city = $data["city"];
+	$league_id = $data["league_id"];
+	
 
 	$zip = null;
 	$parent_email = null;
@@ -243,8 +303,8 @@ function registerUser($data){
 	}
 
 	
-	$sql  = mysql_query("INSERT INTO users (name,email,password,role_id,county,city,state,zip,parent_email,parent_consent,league)
-			VALUES ('$fullName','$email','$password','$role_id','$county','$city','$state' , '$zip', '$parent_email' , '$parent_consent' ,'$league'  )");
+	$sql  = mysql_query("INSERT INTO users (name,email,password,role_id,county,city,state,zip,parent_email,parent_consent,league,league_id)
+			VALUES ('$fullName','$email','$password','$role_id','$county','$city','$state' , '$zip', '$parent_email' , '$parent_consent' ,'$league','$league_id'  )");
 	if(! $sql )
 	{
 		die('Could not enter data: ' . mysql_error());

@@ -216,94 +216,124 @@ function saveCoachOrganization(id){
 		}
 	}); 
 }
+
+	
 function register(){
-	
-	var data = {} ;
-	var fullName = $("#fullName").val();
-	if(fullName == ""){
-		alert("Full name is missing");
-		return ;
-	}
-	data.fullName = fullName ;
-	
-	var email = $("#email").val();
-	if(email == ""){
-		alert("Email is missing");
-		return ;
-	}
-	data.email = email ;
-	
-	var password = $("#password").val();
-	if(password == ""){
-		alert("Password is missing");
-		return ;
-	}
-	
-	data.password = password ;
-	
-	var role_id = $("#dd-role").val();
-	
-	data.role_id = role_id;
-	
-	var state = $("#dd-state").val();
-	
-	data.state = state ;
-	
-	var county = $("#dd-county").val();
-	data.county =  county ;
-	var city = $("#dd-city").val();
-	data.city =  city ;
-	
-	var zip = $("#zip").val();
-	
-	if(zip !=""){
-		data.zip = zip;
-	}
-	
-	var parent_email = $("#parent_email").val();
-	
-	if(parent_email !=""){
-		data.parent_email = parent_email;
-	}
-	
-	if(document.getElementById('parent_consent_yes').checked){
-		data.parent_consent = "1";
-	}else{
 		
-		data.parent_consent = "0";
-	}
-	
-	
-	$.ajax({
-		type : 'POST',
-		url : 'server/user.php',
-		data : {
-			type : "registerUser",
-			data : data
-		},
-		success : function(data) {
+		var data = {} ;
+		var fullName = $("#fullName").val();
+		if(fullName == ""){
+			alert("Full name is missing");
+			return ;
+		}
+		data.fullName = fullName ;
+		
+		var email = $("#email").val();
+		if(email == ""){
+			alert("Email is missing");
+			return ;
+		}
+		data.email = email ;
+		
+		var password = $("#password").val();
+		if(password == ""){
+			alert("Password is missing");
+			return ;
+		}
+		
+		data.password = password ;
+		
+		var role_id = $("#dd-role").val();
+		
+		data.role_id = role_id;
+		
+		var state = $("#dd-state").val();
+		
+		data.state = state ;
+		
+		var county = $("#dd-county").val();
+		data.county =  county ;
+		var city = $("#dd-city").val();
+		data.city =  city ;
+		
+		var zip = $("#zip").val();
+		
+		if(zip !=""){
+			data.zip = zip;
+		}
+		
+		var parent_email = $("#parent_email").val();
+		
+		if(parent_email !=""){
+			data.parent_email = parent_email;
+		}
+		
+		if(document.getElementById('parent_consent_yes').checked){
+			data.parent_consent = "1";
+		}else{
 			
+			data.parent_consent = "0";
+		}
 		
-			var data = JSON.parse(data);
-						try {
 		
-							if ($("#dd-role").val() == "1") {
-								saveCoachOrganization(data[0].id)
-							}
-							alert("Successfully Register ");
-							window.location = "index.html";
-		
-						} catch (e) {
-							alert("Email is already registered.");
-						}
-
+		$.ajax({
+			type : 'POST',
+			url : 'server/user.php',
+			data : {
+				type : "loadLeague",
+				data : data
 			},
-			error : function(data) {
-				alert("Server Error please contact admin")
-			}
-		});
+			success : function(response) {
+				
+			
+				var response = JSON.parse(response);
+				data.league_id = response[0].id ;
+				
+				$.ajax({
+					type : 'POST',
+					url : 'server/user.php',
+					data : {
+						type : "registerUser",
+						data : data
+					},
+					success : function(data1) {
+						
+					
+						var data1 = JSON.parse(data1);
+									try {
+					
+										if ($("#dd-role").val() == "1") {
+											saveCoachOrganization(data1[0].id)
+										}
+										alert("Successfully Register ");
+										window.location = "index.html";
+					
+									} catch (e) {
+										alert("Email is already registered.");
+									}
 
-	}
+						},
+						error : function(data) {
+							alert("Server Error please contact admin")
+						}
+					});
+				
+				
+				
+
+				},
+				error : function(data) {
+					alert("Server Error please contact admin")
+				}
+			});
+		
+		
+		
+		
+		
+
+}
+
 
 	function roleChangeEvent() {
 
