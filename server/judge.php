@@ -26,6 +26,13 @@ if($type =="rateLink"){
 
 }
 
+if($type =="loadRatedLinksByAllJudges"){
+
+	loadRatedLinksByAllJudges();
+
+}
+
+
 function loadRatedLinks($data){
 	
 	$jid = $data["jid"];
@@ -33,6 +40,32 @@ function loadRatedLinks($data){
 	$rowStatus = 0;
 	$array = array();
 	$sql = "SELECT l.url  , l.posted_date , l.title , vr.rating   FROM video_rating vr , links l where vr.link_id = l.id  AND   vr.judge_id = '$jid'   ";
+	$retval = mysql_query( $sql );
+
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+
+	}
+
+
+
+	echo json_encode($array);
+}
+
+function loadRatedLinksByAllJudges(){
+	
+	
+
+	$rowStatus = 0;
+	$array = array();
+	$sql = "SELECT l.url , u.name , l.posted_date , l.title , vr.rating   FROM video_rating vr , users u  , links l where vr.link_id = l.id  and u.id = vr.judge_id    ";
 	$retval = mysql_query( $sql );
 
 	if(! $retval )

@@ -111,6 +111,10 @@
 					data-target="#standingPP">League Standing</button>
 					<button class="btn btn-primary btn-lg" onclick="getPlayers()" data-toggle="modal"
 					data-target="#playersPP">Players List</button>
+					<button class="btn btn-primary btn-lg" onclick="getChallenges()" data-toggle="modal"
+					data-target="#challenges">Show Challenges</button>
+					<button class="btn btn-primary btn-lg" onclick="getVideos()" data-toggle="modal"
+					data-target="#videos">Show Video Links History</button>
 					
 					
 				<div class="panel panel-default">
@@ -197,6 +201,46 @@
 				</div>
 				<div class="modal-body">
 					<ul id="player-list-st">
+						
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="modal fade" id="videos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" >Players List</h4>
+				</div>
+				<div class="modal-body">
+					<div class="col-md-12">
+						<h2 class="page-header" id="links-title">History Videos</h2>
+						
+						<div class="row"  id="historyLinks"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="challenges" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" >Challenges</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="chng-list">
 						
 					</ul>
 				</div>

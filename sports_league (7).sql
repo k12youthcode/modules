@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2016 at 06:09 PM
+-- Generation Time: Mar 16, 2016 at 05:23 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -3492,32 +3492,33 @@ CREATE TABLE IF NOT EXISTS `users` (
   `zip` varchar(255) NOT NULL,
   `league` varchar(255) NOT NULL,
   `picUrl` varchar(255) NOT NULL,
-  `league_id` int(11) NOT NULL
+  `league_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `county`, `city`, `state`, `parent_consent`, `parent_email`, `zip`, `league`, `picUrl`, `league_id`) VALUES
-(1, 'Junaid Akhtar', 'bob@gmail.com', 'bob', 3, 'Autauga', '1', 'AL', 1, 'mom@gmail.com', '5400', 'AL_Autauga', '415902165.jpg', 0),
-(24, 'wd', 'bob1@gmail.com', 'bob', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(25, 'John Wick', 'john@gmail.com', '123', 2, 'District', '1', 'DC', 0, '', '', 'DC_District', '272778461.jpg', 0),
-(26, 'Loxvo ', 'test@loxvo.com', '123', 4, 'Baldwin', '1', 'AL', 0, '', '544', 'AL_Baldwin', '', 0),
-(27, 'TESTING', 'Claes@friendsend.com', '0000', 1, 'Autauga', '1', 'AL', 0, '', '541', 'AL_Autauga', '', 0),
-(30, '2', '2@Gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(31, '21', '21@Gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(32, '12121', '121@gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(33, '12121', '1211@gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(34, '12121', '12111@gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(35, 'asd', 'Claes11@friendsend.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(37, 'asd', 'Claes111111@friendsend.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(38, 'ASas', 'Claesasaasas@friendsend.com', '0000', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0),
-(39, 'admin', 'admin@admin.com', '123', 5, '', '', '', 0, '', '', '', '', 0),
-(40, 'test organization', 'Claes111@friendsend.com', '0000', 4, 'Cassia', '1', 'ID', 0, '', '54000', 'ID_Cassia', '', 0),
-(41, 'asdasdas', 'Claesasdasdas@friendsend.com', '0000', 1, 'Coffee', '1', 'AL', 0, '', '', 'AL_Coffee', '', 0),
-(42, 'Test', 'Claes1111@friendsend.com', '0000', 1, 'Coffee', '1', 'AL', 0, '', '', 'AL_Coffee', '', 0),
-(43, 'junaidcoo', 'Claes121212121@friendsend.com', '0000', 1, 'Kauai', '1', 'HI', 0, '', '', 'HI_Kauai', '', 2);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `county`, `city`, `state`, `parent_consent`, `parent_email`, `zip`, `league`, `picUrl`, `league_id`, `status`) VALUES
+(1, 'Junaid Akhtar', 'bob@gmail.com', 'bob', 3, 'Autauga', '1', 'AL', 1, 'mom@gmail.com', '5400', 'AL_Autauga', '415902165.jpg', 0, 0),
+(24, 'wd', 'bob1@gmail.com', 'bob', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 1),
+(25, 'John Wick', 'john@gmail.com', '123', 2, 'District', '1', 'DC', 0, '', '', 'DC_District', '272778461.jpg', 0, 1),
+(26, 'Loxvo ', 'test@loxvo.com', '123', 4, 'Baldwin', '1', 'AL', 0, '', '544', 'AL_Baldwin', '', 0, 1),
+(27, 'TESTING', 'Claes@friendsend.com', '0000', 1, 'Autauga', '1', 'AL', 0, '', '541', 'AL_Autauga', '', 0, 0),
+(30, '2', '2@Gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 1),
+(31, '21', '21@Gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 1),
+(32, '12121', '121@gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 0),
+(33, '12121', '1211@gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 0),
+(34, '12121', '12111@gmail.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 0),
+(35, 'asd', 'Claes11@friendsend.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 0),
+(37, 'asd', 'Claes111111@friendsend.com', '123', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 0),
+(38, 'ASas', 'Claesasaasas@friendsend.com', '0000', 1, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 0, 0),
+(39, 'admin', 'admin@admin.com', '123', 5, '', '', '', 0, '', '', '', '', 0, 0),
+(40, 'test organization', 'Claes111@friendsend.com', '0000', 4, 'Cassia', '1', 'ID', 0, '', '54000', 'ID_Cassia', '', 0, 0),
+(41, 'asdasdas', 'Claesasdasdas@friendsend.com', '0000', 1, 'Coffee', '1', 'AL', 0, '', '', 'AL_Coffee', '', 0, 0),
+(42, 'Test', 'Claes1111@friendsend.com', '0000', 1, 'Coffee', '1', 'AL', 0, '', '', 'AL_Coffee', '', 0, 0),
+(43, 'junaidcoo', 'Claes121212121@friendsend.com', '0000', 1, 'Kauai', '1', 'HI', 0, '', '', 'HI_Kauai', '', 2, 0);
 
 -- --------------------------------------------------------
 

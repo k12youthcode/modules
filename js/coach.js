@@ -156,6 +156,56 @@ function bytesToSize(bytes) {
    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 }
 
+function getChallenges(){
+	
+	$("#chng-list").html("");
+	var html ="";
+	for(var i in meta.challenges){
+		html +='<li id="'+meta.users[i].id+'"><span>'+meta.challenges[i].name+' Start Date :'+meta.challenges[i].startDate+' , End Date : '+meta.challenges[i].endDate+' <span> ';
+	
+	
+		
+		html +="</li>";
+	}
+	
+	$("#chng-list").html(html);
+	
+}
+function getVideos(){
+	
+	var data = { data :"test"} ;
+
+	$.ajax({
+		type : 'POST',
+		url : 'server/judge.php',
+		data : {
+			type : "loadRatedLinksByAllJudges",
+			data : data
+		},
+		success : function(response) {
+			
+			var response = JSON.parse(response);
+			for(var i in response){
+				var html ="";
+				html +='<div class="col-md-4">';
+				html +='<p>"'+response[i].name+'"</p>';
+					html +='<span class="badge">'+response[i].rating+'</span>';
+					html +='<a href="'+response[i].url+'" class="thumbnail">';
+					html +='<p>"'+response[i].title+'"</p>';
+					html +='<img src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" style="width: 150px; height: 150px"></img>';
+					html +='</a>';
+				
+				html +='</div>';
+				
+				$("#historyLinks").append(html);
+			}
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+}
 function saveTeam(){
 	var data = {};
 	var teamName = $("#teamName").val();
