@@ -238,6 +238,61 @@ function addPlayer(){
 	
 }
 
+function getPlayers(){
+	
+	$("#player-list-st").html("");
+	var html ="";
+	for(var i in meta.users){
+		html +='<li id="'+meta.users[i].id+'"><span>'+meta.users[i].name+' <span> ';
+		var status = "Active";
+		var state =1;
+		if( meta.users[i].status !=undefined ) {
+			if(meta.users[i].status == "1"){
+				status =  "Un Active";
+				state = 0 ;
+			}
+			
+		}
+		html +="<button class='btn btn-primary btn-lg' data-state='"+state+"' data-index='"+i+"' onclick='changeStatus(this)'>"+status+"</button>";
+		
+		html +="</li>";
+	}
+	
+	$("#player-list-st").html(html);
+	
+}
+
+function changeStatus(element){
+	
+	var index = $(element).data("index");
+	var user = meta.users[index] ;
+	var state = $(element).data("state");
+	
+	var data = {state : state , id :user.id };
+	meta.users[index].state = state;
+	
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "changeStatus",
+			data : data
+		},
+		success : function(response) {
+			
+			
+			alert('Stated Changed Successfully');
+			location.reload();
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+	
+}
+
 function loadPlayers(element){
 	
 	var teamId = $(element).data("teamid");

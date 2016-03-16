@@ -109,6 +109,10 @@
 					data-target="#myModal">Add Team</button>
 				<button class="btn btn-primary btn-lg" onclick="getTeamRanking()" data-toggle="modal"
 					data-target="#standingPP">League Standing</button>
+					<button class="btn btn-primary btn-lg" onclick="getPlayers()" data-toggle="modal"
+					data-target="#playersPP">Players List</button>
+					
+					
 				<div class="panel panel-default">
 
 
@@ -165,6 +169,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="modal fade" id="scorePP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -174,6 +179,26 @@
 				</div>
 				<div class="modal-body">
 					<h1 id="score" class="label label-danger"></h1>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="playersPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" >Players List</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="player-list-st">
+						
+					</ul>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

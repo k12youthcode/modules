@@ -14,6 +14,11 @@ if($type == "saveTeam")
 	saveTeam($data);
 }
 
+if($type == "changeStatus")
+{
+	changeStatus($data);
+}
+
 if($type =="loadTeams"){
 
 	loadTeams($data);
@@ -67,7 +72,21 @@ if($type == "getTeamRanking"){
 }
 
 
+function changeStatus($data){
+	$id = $data["id"];
+	$state = $data["state"];
+	
+	
 
+
+	$sql  = mysql_query(" UPDATE  users SET status = '$state'  WHERE  id = '$id' ");
+	if(! $sql )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		echo "Success";
+	}
+}
 
 
 function updateCustomer($data){
