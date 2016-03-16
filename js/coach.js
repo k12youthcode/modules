@@ -173,7 +173,7 @@ function getChallenges(){
 }
 function getVideos(){
 	
-	var data = { data :"test"} ;
+	var data = { data :"test."} ;
 
 	$.ajax({
 		type : 'POST',
