@@ -279,7 +279,7 @@ function registerUser($data){
 	$county = $data["county"];
 	$city = $data["city"];
 	$league_id = $data["league_id"];
-	
+	$org_id = null ; 
 
 	$zip = null;
 	$parent_email = null;
@@ -289,6 +289,13 @@ function registerUser($data){
 	if(isset($data["zip"])){
 		$zip = $data["zip"] ;
 	}
+	
+	if(isset($data["org_id"])){
+		$org_id = $data["org_id"]; 
+	}
+	
+	
+	
 	if(isset($data["parent_email"])){
 		$parent_email = $data["parent_email"] ;
 	}
@@ -303,8 +310,8 @@ function registerUser($data){
 	}
 
 	
-	$sql  = mysql_query("INSERT INTO users (name,email,password,role_id,county,city,state,zip,parent_email,parent_consent,league,league_id)
-			VALUES ('$fullName','$email','$password','$role_id','$county','$city','$state' , '$zip', '$parent_email' , '$parent_consent' ,'$league','$league_id'  )");
+	$sql  = mysql_query("INSERT INTO users (name,email,password,role_id,county,city,state,zip,parent_email,parent_consent,league,league_id,org_id)
+			VALUES ('$fullName','$email','$password','$role_id','$county','$city','$state' , '$zip', '$parent_email' , '$parent_consent' ,'$league','$league_id','$org_id'  )");
 	if(! $sql )
 	{
 		die('Could not enter data: ' . mysql_error());

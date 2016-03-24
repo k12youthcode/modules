@@ -293,6 +293,15 @@ function getPlayers(){
 	$("#player-list-st").html("");
 	var html ="";
 	for(var i in meta.users){
+		
+		if(meta.users[i].role_id !="2"){
+			continue ;
+		}
+		
+		if(meta.users[i].org_id != user.org_id){
+			continue ;
+		}
+		
 		html +='<li id="'+meta.users[i].id+'"><span>'+meta.users[i].name+' <span> ';
 		var status = "Active";
 		var state =1;

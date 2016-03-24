@@ -275,6 +275,11 @@ function register(){
 			data.parent_consent = "0";
 		}
 		
+		if( $("#dd-role").val() == "2" ) {
+			data.org_id =  $("#dd-org").val() ;
+		}
+		
+		
 		
 		$.ajax({
 			type : 'POST',
@@ -342,15 +347,18 @@ function register(){
 		if (value == "1" || value == "2") {
 
 			$("#parentDiv").show();
+			$("#org-pnl").show();
 		} else {
 
 			$("#parentDiv").hide();
+			$("#org-pnl").hide();
 		}
 
-		if (value == "1") {
-			$("#org-pnl").show();
+		if (value == "1" || value == "2" ) {
+			
+			//$("#org-pnl").show();
 		} else {
-			$("#org-pnl").hide();
+			
 		}
 
 	}
