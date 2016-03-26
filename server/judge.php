@@ -116,9 +116,13 @@ function rateLink($data){
 	$linkId = $data["linkId"];
 	$rating = $data["rating"];
 	$userId = $data["userId"];
+	$creativity = $data["creativity"];
+	$artistic = $data["artistic"];
+	$logic = $data["logic"];
+	$problem_solved = $data["problem_solved"];
 
-	$sql  = mysql_query("INSERT INTO video_rating (judge_id,rating,link_id)
-			VALUES ('$userId','$rating','$linkId'  )");
+	$sql  = mysql_query("INSERT INTO video_rating (judge_id,rating,link_id,creativity,artistic,logic,problem_solved)
+			VALUES ('$userId','$rating','$linkId','$creativity','$artistic','$logic','$problem_solved'  )");
 	if(! $sql )
 	{
 		die('Could not enter data: ' . mysql_error());

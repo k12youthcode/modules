@@ -42,8 +42,11 @@ $(document).ready(function() {
 						html +='<p>"'+response[i].title+'"</p>';
 						html +='<img src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" style="width: 150px; height: 150px"></img>';
 						html +='</a>';
-						html +='<input id="rate-'+response[i].id+'" type="number" min="1" max="100" placeholder="1-100" />';
-						html +='<input type="button" class="btn btn-primary" value="Rate" placeholder="1-100" onclick="rateLink(this,'+response[i].id+','+user.id+')"/>';
+						html +='<input id="rate-art-'+response[i].id+'" type="number" min="1" max="100" placeholder="Artistic" />';
+						html +='<input id="rate-cret-'+response[i].id+'" type="number" min="1" max="100" placeholder="Creativity" />';
+						html +='<input id="rate-logic-'+response[i].id+'" type="number" min="1" max="100" placeholder="logic" />';
+						html +='<input id="rate-problemSolved-'+response[i].id+'" type="number" min="1" max="100" placeholder="Problem solved" />';
+						html +='<input type="button" style="margin-left:12px" class="btn btn-primary" value="Rate" placeholder="1-100" onclick="rateLink(this,'+response[i].id+','+user.id+')"/>';
 					html +='</div>';
 					
 					$("#links").append(html);
@@ -126,9 +129,14 @@ function switchView(id){
 
 function rateLink(element,id,userId){
 	
-	  $(element).prop('disabled', true);
-	var rating =$("#rate-"+id).val();
-	var data = { linkId :id ,rating :rating,userId:userId } ;
+	 $(element).prop('disabled', true);
+	var creativity =$("#rate-cret-"+id).val();
+	var art =$("#rate-art-"+id).val();
+	var problemSolved =$("#rate-problemSolved-"+id).val();
+	var logic =$("#rate-logic-"+id).val();
+	
+	rating = Number(creativity) + Number(art) + Number(problemSolved) + Number(logic) ;
+	var data = { linkId :id ,rating :rating,userId:userId ,creativity:creativity,logic:logic ,artistic:art ,problem_solved:problemSolved } ;
 	$.ajax({
 		type : 'POST',
 		url : 'server/judge.php',
