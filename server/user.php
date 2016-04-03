@@ -56,11 +56,19 @@ if($type == "loadLeague")
 	loadLeague($data);
 }
 
+if($type == "searchLeague")
+{
+	searchLeague($data);
+}
+
+
+
 
 function loadLeague($data){
 
 	$state = $data["state"];
 	$county = $data["county"];
+	$city = $data["city"];
 	$league = $state.'_'.$county;
 	$array = array();
 	$sql = "SELECT id as id FROM `league` where name = '$league'  ";
@@ -84,8 +92,8 @@ function loadLeague($data){
 		
 		}else{
 		
-		$sql  = mysql_query("INSERT INTO league (name)
-			VALUES ('$league'  )");
+		$sql  = mysql_query("INSERT INTO league (name,city,county,state)
+			VALUES ('$league' , '$city' , '$county' , '$state'  )");
 			
 			
 	$sql = "SELECT Max(id) as id FROM `league`    ";
@@ -398,6 +406,30 @@ function loadCoachOrganization($data){
 	
 
 	$sql = "SELECT u.*  FROM `users` u , coach_organization co where co.coach_id = u.id and co.organization_id = '$orgId'  ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+		echo json_encode($array);
+
+}
+
+function searchLeague($data){
+	
+	
+	$leagueName = $data["leagueName"];
+	
+
+	$sql = "SELECT l.*  FROM `league` l  where  l.name LIKE '%$leagueName%'  ";
 	$retval = mysql_query( $sql );
 	
 	if(! $retval )

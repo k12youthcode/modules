@@ -65,6 +65,42 @@ function saveChallenge(){
 	
 }
 
+function searchLeague(){
+	
+	var leagueName = $("#league-name").val();
+	var data = { leagueName : leagueName };
+	$.ajax({
+		type : 'POST',
+		url : 'server/user.php',
+		data : {
+			type : "searchLeague",
+			data : data
+		},
+		success : function(response) {
+			var html ="";
+			$("#league-list").html("");
+			try{
+				
+				response = JSON.parse(response);
+				for(var i in response){
+					html +='<li ><span>'+response[i].name+' <span> ';
+					html +="</li>";
+				}
+			
+				$("#league-list").html(html);
+				
+			}catch(e){
+				alert("Not found");
+			}
+		
+			
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+}
+
 function loadChallenge(){
 	
 

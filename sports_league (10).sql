@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2016 at 08:37 AM
+-- Generation Time: Apr 03, 2016 at 06:43 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `coach_organization` (
   `id` bigint(20) NOT NULL,
   `coach_id` bigint(20) NOT NULL,
   `organization_id` bigint(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `coach_organization`
@@ -86,7 +86,8 @@ INSERT INTO `coach_organization` (`id`, `coach_id`, `organization_id`) VALUES
 (1, 38, 26),
 (2, 24, 26),
 (3, 41, 26),
-(4, 43, 26);
+(4, 43, 26),
+(5, 46, 26);
 
 -- --------------------------------------------------------
 
@@ -3351,17 +3352,21 @@ CREATE TABLE IF NOT EXISTS `league` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `startDate` datetime NOT NULL,
-  `endDate` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `endDate` datetime NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `county` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `league`
 --
 
-INSERT INTO `league` (`id`, `name`, `startDate`, `endDate`) VALUES
-(1, 'AL_Coffee', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'HI_Kauai', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'AL_Autauga', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `league` (`id`, `name`, `startDate`, `endDate`, `state`, `county`, `city`) VALUES
+(1, 'AL_Coffee', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', ''),
+(2, 'HI_Kauai', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', ''),
+(3, 'AL_Autauga', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', ''),
+(4, 'FL_Franklin', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'FL', 'Franklin', '2');
 
 -- --------------------------------------------------------
 
@@ -3496,7 +3501,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `league_id` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `org_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -3522,7 +3527,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `county`, `ci
 (42, 'Test', 'Claes1111@friendsend.com', '0000', 1, 'Coffee', '1', 'AL', 0, '', '', 'AL_Coffee', '', 0, 0, 0),
 (43, 'junaidcoo', 'Claes121212121@friendsend.com', '0000', 1, 'Kauai', '1', 'HI', 0, '', '', 'HI_Kauai', '', 2, 0, 0),
 (44, 'Red Math', 'RedMath@RedMath.com', '123', 2, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 3, 0, 26),
-(45, 'Shoaib malik', 'malik@malik.com', '0000', 3, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 3, 0, 0);
+(45, 'Shoaib malik', 'malik@malik.com', '0000', 3, 'Autauga', '1', 'AL', 0, '', '', 'AL_Autauga', '', 3, 0, 0),
+(46, 'Testing 123', 'Claes222@friendsend.com', '0000', 1, 'Franklin', '2', 'FL', 1, '', '23232', 'FL_Franklin', '', 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -3629,7 +3635,7 @@ ALTER TABLE `challenge`
 -- AUTO_INCREMENT for table `coach_organization`
 --
 ALTER TABLE `coach_organization`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `county`
 --
@@ -3639,7 +3645,7 @@ ALTER TABLE `county`
 -- AUTO_INCREMENT for table `league`
 --
 ALTER TABLE `league`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `links`
 --
@@ -3659,7 +3665,7 @@ ALTER TABLE `team_player`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `video_rating`
 --
