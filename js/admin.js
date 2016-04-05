@@ -64,6 +64,35 @@ function saveChallenge(){
 	
 	
 }
+function showChangeName(element){
+	$("#txt-league"+$(element).data("id")).show();
+	$("#btn-txt-league"+$(element).data("id")).show();
+}
+
+function editLeague(element){
+	
+	
+	var txt = $("#txt-league"+$(element).data("id")).val();
+	if(txt == ""){
+		return ;
+	}
+	var data = { txt :txt ,id :$(element).data("id")  };
+	$.ajax({
+		type : 'POST',
+		url : 'server/user.php',
+		data : {
+			type : "updateLeagueName",
+			data : data
+		},
+		success : function(response) {
+			$("#label-league"+$(element).data("id")).html(txt);
+			
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+}
 
 function searchLeague(){
 	
@@ -83,7 +112,10 @@ function searchLeague(){
 				
 				response = JSON.parse(response);
 				for(var i in response){
-					html +='<li ><span>'+response[i].name+' <span> ';
+					html +="<li ><span id='label-league"+response[i].id+"'>"+response[i].name+" <span> ";
+						html +="<input id='txt-league"+response[i].id+"' style='display:none;' type='text'></input>";
+						html +="<button id='btn-txt-league"+response[i].id+"' data-id='"+response[i].id+"' style='display:none;' class='btn btn-default dropdown-toggle' data-id='"+response[i].id+"' onclick='editLeague(this)'>Save</button>";
+						html +="<button class='btn btn-default dropdown-toggle' data-id='"+response[i].id+"' onclick='showChangeName(this)'>Change name</button>";
 					html +="</li>";
 				}
 			
@@ -136,4 +168,41 @@ function convertUTCDateToLocalDate(date) {
     newDate.setHours(hours - offset);
 
     return newDate;   
+}
+
+function searchTeam(){
+	
+	var teamName = $("#team-name").val();
+	var data = { teamName : teamName };
+	$.ajax({
+		type : 'POST',
+		url : 'server/user.php',
+		data : {
+			type : "searchTeam",
+			data : data
+		},
+		success : function(response) {
+			var html ="";
+			$("#team-list").html("");
+			try{
+				
+				response = JSON.parse(response);
+				for(var i in response){
+					html +="<li ><span id='label-league"+response[i].id+"'>"+response[i].name+" <span> ";
+					
+					html +="</li>";
+				}
+			
+				$("#team-list").html(html);
+				
+			}catch(e){
+				alert("Not found");
+			}
+		
+			
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
 }

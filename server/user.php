@@ -60,7 +60,15 @@ if($type == "searchLeague")
 {
 	searchLeague($data);
 }
+if($type == "updateLeagueName")
+{
+	updateLeagueName($data);
+}
 
+if($type == "searchTeam")
+{
+	searchTeam($data);
+}
 
 
 
@@ -145,6 +153,21 @@ function updateCustomer($data){
 		echo "Success";
 	}
 }
+function updateLeagueName($data){
+	$id = $data["id"];
+	$txt = $data["txt"];
+	
+
+
+	$sql  = mysql_query(" UPDATE  league SET name = '$txt'  WHERE  id = '$id' ");
+	if(! $sql )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		echo "Success";
+	}
+}
+
 
 
 
@@ -446,6 +469,31 @@ function searchLeague($data){
 		echo json_encode($array);
 
 }
+
+function searchTeam($data){
+	
+	
+	$teamName = $data["teamName"];
+	
+
+	$sql = "SELECT l.*  FROM `team` l  where  l.name LIKE '%$teamName%'  ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+		echo json_encode($array);
+
+}
+
 
 
 

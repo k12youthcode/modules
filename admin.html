@@ -45,6 +45,10 @@
 					data-target="#searchLeague"
 					class="btn btn-lg btn-primary  signup-btn" type="button">Search League
 				</button>
+				<button id="searchTeam-btn"  data-toggle="modal"
+					data-target="#searchTeam"
+					class="btn btn-lg btn-primary  signup-btn" type="button">Search Team
+				</button>
 			
 
 			</div>
@@ -57,6 +61,38 @@
 
 
 
+
+<!--Search TEAM POP UP -->
+	<div class="modal fade" id="searchTeam" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Search Team</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="team-list">
+					
+					</ul>
+					
+					
+						<label for="name">Name</label>
+						<div class="form-group ">
+							<input type="text" id="team-name" placeholder="Search league" /> 
+						</div>
+						
+						<div class="input-group date" >
+							<input id="searchTeam-btn-pp"  onclick="searchTeam()" value="Search" type="button" class="form-control">
+						</div>
+						</div>
+
+
+
+					
+				</div>
+				
+			</div>
+		</div>
 <!--SearchLeague POP UP -->
 	<div class="modal fade" id="searchLeague" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -88,7 +124,7 @@
 				
 			</div>
 		</div>
-	</div>
+	
 
 <!-- Add Challenge POP UP -->
 	<div class="modal fade" id="addChallenge" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
