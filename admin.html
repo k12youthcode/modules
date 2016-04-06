@@ -49,6 +49,10 @@
 					data-target="#searchTeam"
 					class="btn btn-lg btn-primary  signup-btn" type="button">Search Team
 				</button>
+				<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#changeStatus"
+					class="btn btn-lg btn-primary  signup-btn" onclick="loadAllUser()" type="button">Change status
+				</button>
 			
 
 			</div>
@@ -61,6 +65,25 @@
 
 
 
+
+
+<!--Change status POP UP -->
+	<div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Change status</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="user-list">
+					
+					</ul>
+
+				</div>
+				
+			</div>
+		</div>
 
 <!--Search TEAM POP UP -->
 	<div class="modal fade" id="searchTeam" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">

@@ -206,3 +206,61 @@ function searchTeam(){
 		}
 	});
 }
+
+function loadAllUser(){
+	
+	$("#user-list").html("");
+	var html ="";
+	for(var i in meta.users){
+		
+		 html ="";
+		
+		html +='<li id="'+meta.users[i].id+'"><span>'+meta.users[i].name+' <span> ';
+		html +='<select id="user-select-'+meta.users[i].id+'" data-id="'+meta.users[i].id+'" data-state="'+meta.users[i].status+'" onchange="changeStatus(this)"> ';
+			html +='<option value="0">Active</option> ';
+			html +='<option value="1">In Active</option> ';
+			html +='<option value="2">Suspeneded</option> ';
+		html +='</select> ';
+	//	html +="<button class='btn btn-primary btn-lg' data-state='"+state+"' data-index='"+i+"' onclick='changeStatus(this)'>"+status+"</button>";
+		
+		html +="</li>";
+		$("#user-list").append(html);
+		$("#user-select-"+meta.users[i].id).val(meta.users[i].status);
+		
+	}
+	
+	//$("#user-list").html(html);	
+	
+	
+}
+
+
+function changeStatus(element){
+	
+	var id = $(element).data("id");
+	var state = $(element).data("state");
+
+	state = $("#user-select-"+id).val();
+	var data = {state : state , id :id};
+	
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "changeStatus",
+			data : data
+		},
+		success : function(response) {
+			
+			
+			alert('Stated Changed Successfully');
+		location.reload();
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+	
+}
