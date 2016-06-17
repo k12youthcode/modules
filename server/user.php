@@ -51,6 +51,11 @@ if($type == "saveChallenge")
 	saveChallenge($data);
 }
 
+if($type == "saveChallengeText")
+{
+	saveChallengeText($data);
+}
+
 if($type == "loadLeague")
 {
 	loadLeague($data);
@@ -422,6 +427,28 @@ function saveChallenge($data){
 	}
 
 }
+
+function saveChallengeText($data){
+
+	$text = $data["text"];
+	$deadline = $data["deadline"];
+	$createdBy = $data["createdBy"];
+
+	$sql  = mysql_query("INSERT INTO challenge_text (text,deadline,createdBy)
+			VALUES ('$text','$deadline','$createdBy'  )");
+	if(! $sql )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		
+		echo $sql;
+	}
+
+}
+
+
+
 function loadCoachOrganization($data){
 	
 	

@@ -211,6 +211,7 @@ function loadUsers(){
 		success : function(response) {
 			meta.challenges = {} ;
 			meta.challenges = JSON.parse(response);
+			loadChallengeText();
 
 		},
 		error : function(data) {
@@ -218,5 +219,47 @@ function loadUsers(){
 		}
 	});
 	
+}
+
+function loadChallengeText(){
+	
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "loadChallengeText",
+			data : ""
+		},
+		success : function(response) {
+			$("#challenge-txt").html("No challenge available");
+			meta.challengesText = {} ;
+			meta.challengesText = JSON.parse(response);
+			createChallengeTextHtml();
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin");
+		}
+	});
+	
+
+}
+
+function createChallengeTextHtml(){
+	
+	if(!meta.challengesText || meta.challengesText.length == 0){
+		$("#challenge-txt").html("No challenge available");
+		return ;
+	}
+	
+	var html = "<ul>";
+	for(var i in meta.challengesText){
+		html +=  "<li> Challenge Text "+meta.challengesText[i].text + " Deadline:  "+ meta.challengesText[i].deadline+ "</li>";
+		
+	}
+	
+	html +="</ul>"
+		
+		$("#challenge-txt").html(html);
 }
 

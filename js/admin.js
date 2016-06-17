@@ -34,6 +34,41 @@ $(document).ready(function() {
 });
 
 
+function saveChallengeText(){
+	
+	
+
+	
+	var data = {};
+	data.text = $("#chalng-txt").val();
+	data.deadline = new Date($("#deadline").val()).toISOString();
+	data.createdBy =user.id;
+	
+	
+	
+	$.ajax({
+		type : 'POST',
+		url : 'server/user.php',
+		data : {
+			type : "saveChallengeText",
+			data : data
+		},
+		success : function(response) {
+			
+			alert("Successfully added");
+			 $("#chalng-txt").val("");
+			$("#deadline").val("");
+	
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+	
+
+}
+
 function saveChallenge(){
 	
 	var data = {};

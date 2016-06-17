@@ -53,6 +53,10 @@
 					data-target="#changeStatus"
 					class="btn btn-lg btn-primary  signup-btn" onclick="loadAllUser()" type="button">Change status
 				</button>
+				<button id="challengeText-btn"  data-toggle="modal"
+					data-target="#challengeText"
+					class="btn btn-lg btn-primary  signup-btn" onclick="" type="button">Upload Challenge Text
+				</button>
 			
 
 			</div>
@@ -84,6 +88,7 @@
 				
 			</div>
 		</div>
+	</div>
 
 <!--Search TEAM POP UP -->
 	<div class="modal fade" id="searchTeam" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
@@ -189,6 +194,42 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" onclick="saveChallenge()"  class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Challenge Text popup -->
+	<div class="modal fade" id="challengeText" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" >  Challenge Text</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="players-list">
+					
+					</ul>
+					<form role="form" >
+					
+						<label for="name">Challenge text</label>
+						<div class="form-group ">
+							<input type="text" id="chalng-txt"  /> 
+						</div>
+						
+					<label for="name">Deadline</label>
+						<div class="form-group">
+						<div class="input-group date" >
+							<input id="deadline" data-provide="datepicker" type="text" class="form-control">
+						</div>
+						</div>
+	
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" onclick="saveChallengeText()"  class="btn btn-primary">Save</button>
 				</div>
 			</div>
 		</div>

@@ -47,6 +47,11 @@ if($type == "loadChalleneges"){
 	loadChalleneges();
 
 }
+if($type == "loadChallengeText"){
+
+	loadChallengeText();
+
+}
 
 if($type == "addLink"){
 
@@ -218,6 +223,31 @@ function loadChalleneges(){
 
 	echo json_encode($array);
 }
+
+function loadChallengeText(){
+	
+	$sql = "SELECT * FROM `challenge_text`  WHERE DATE(deadline) >= CURDATE();    ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+
+	
+
+	echo json_encode($array);
+}
+
+
+
 
 
 function loadPlayers($data){
