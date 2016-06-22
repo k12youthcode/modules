@@ -256,7 +256,7 @@ function createChallengeTextHtml(){
 	
 	var html = "<ul>";
 	for(var i in meta.challenges){
-		html +=  "<li> Challenge Text "+meta.challenges[i].name + " Start Date:  "+ meta.challenges[i].startDate+ " End Date:  "+ meta.challenges[i].endDate+ "</li>";
+		html +=  "<li> Challenge Text "+meta.challenges[i].name + " Start Date:  "+ meta.challenges[i].startDate+ " End Date:  "+ meta.challenges[i].endDate+  " Challenge Text:  "+ meta.challenges[i].text+ "</li>";
 		
 	}
 	

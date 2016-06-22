@@ -75,6 +75,7 @@ function saveChallenge(){
 	data.name = $("#chalng-name").val();
 	data.startDate = new Date($("#startDate").val()).toISOString();
 	data.endDate =   new Date($("#endDate").val()).toISOString();
+	data.text = $("#chalng-txt").val();
 	
 	
 	
@@ -91,6 +92,7 @@ function saveChallenge(){
 			$("#chalng-name").val("");
 			$("#startDate").val("");
 			$("#endDate").val("");
+			$("#chalng-txt").val("");
 		},
 		error : function(data) {
 			alert("Server Error please contact admin")

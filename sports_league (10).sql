@@ -25,12 +25,13 @@ CREATE TABLE `challenge` (
   `name` varchar(255) NOT NULL,
   `startDate` datetime NOT NULL,
   `endDate` datetime NOT NULL,
+  `text` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 /*Data for the table `challenge` */
 
-insert  into `challenge`(`id`,`name`,`startDate`,`endDate`) values (19,'sd','2016-02-01 19:00:00','2016-02-05 19:00:00'),(20,'lo','2016-02-16 19:00:00','2016-02-24 19:00:00'),(21,'s','2016-02-22 19:00:00','2016-02-18 19:00:00'),(22,'23','2016-02-09 19:00:00','2016-02-25 19:00:00'),(23,'3242','2016-02-21 19:00:00','2016-02-26 19:00:00'),(24,'asd','2016-01-31 19:00:00','2016-02-09 19:00:00');
+insert  into `challenge`(`id`,`name`,`startDate`,`endDate`,`text`) values (19,'sd','2016-02-01 19:00:00','2016-02-05 19:00:00',NULL),(20,'lo','2016-02-16 19:00:00','2016-02-24 19:00:00',NULL),(21,'s','2016-02-22 19:00:00','2016-02-18 19:00:00',NULL),(22,'23','2016-02-09 19:00:00','2016-02-25 19:00:00',NULL),(23,'3242','2016-02-21 19:00:00','2016-02-26 19:00:00',NULL),(24,'asd','2016-01-31 19:00:00','2016-02-09 19:00:00','asdasdasdasdasdasdas'),(25,'Test','2016-05-31 19:00:00','2016-06-29 19:00:00','test');
 
 /*Table structure for table `challenge_text` */
 
