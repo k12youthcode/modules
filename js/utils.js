@@ -211,7 +211,9 @@ function loadUsers(){
 		success : function(response) {
 			meta.challenges = {} ;
 			meta.challenges = JSON.parse(response);
-			loadChallengeText();
+			$("#challenge-txt").html("No challenge available");
+			createChallengeTextHtml();
+			//loadChallengeText();
 
 		},
 		error : function(data) {
@@ -247,14 +249,14 @@ function loadChallengeText(){
 
 function createChallengeTextHtml(){
 	
-	if(!meta.challengesText || meta.challengesText.length == 0){
+	if(!meta.challenges || meta.challenges.length == 0){
 		$("#challenge-txt").html("No challenge available");
 		return ;
 	}
 	
 	var html = "<ul>";
-	for(var i in meta.challengesText){
-		html +=  "<li> Challenge Text "+meta.challengesText[i].text + " Deadline:  "+ meta.challengesText[i].deadline+ "</li>";
+	for(var i in meta.challenges){
+		html +=  "<li> Challenge Text "+meta.challenges[i].name + " Start Date:  "+ meta.challenges[i].startDate+ " End Date:  "+ meta.challenges[i].endDate+ "</li>";
 		
 	}
 	
