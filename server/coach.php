@@ -76,6 +76,20 @@ if($type == "getTeamRanking"){
 
 }
 
+if($type == "getWinners"){
+
+	getWinners($data);
+
+}
+
+if($type == "getTodaysChallenge"){
+
+	getTodaysChallenge($data);
+
+}
+
+
+
 
 function changeStatus($data){
 	$id = $data["id"];
@@ -467,7 +481,65 @@ function getTeamRanking($data){
 	echo json_encode($array);
 }
 
+function getWinners($data){
+	
+	$cid = $data["cid"];
+	$groupBy = $data["groupBy"];
+	$array = array();
+	$sql = "SELECT MAX(rating) AS rating ,   teamId   ,   teamName, county , state  ";
+	$sql .= " FROM  ";
+	$sql .= "  (SELECT  SUM(vr.rating) AS rating ,     l.team_id AS teamId , t.name AS teamName , u.`county` AS county , ";
+	$sql .= "   u.`state` AS state FROM  ";
+	$sql .= " video_rating vr ,  links l , team t ,  users u    ";
+	$sql .= "  WHERE t.id = l.team_id AND u.id = t.`coach_id`  AND l.id = vr.link_id AND l.`challenge_id` = '$cid'     ";
+	$sql .= "   GROUP BY l.team_id ) AS temp   ";
+	$sql .= "  GROUP BY ";
+	$sql .= $groupBy  ;
+	
+	
+	
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
 
+	
+
+	echo json_encode($array);
+}
+
+function getTodaysChallenge(){
+	
+
+	$array = array();
+	$sql = " SELECT * FROM challenge WHERE DATE(endDate) = CURDATE()  ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+
+	
+
+	echo json_encode($array);
+}
 
 
 

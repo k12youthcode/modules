@@ -265,3 +265,83 @@ function createChallengeTextHtml(){
 		$("#challenge-txt").html(html);
 }
 
+function getTodaysChallenge(){
+	
+	$("#winner-body").html("");
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "getTodaysChallenge",
+			data : ""
+		},
+		success : function(response) {
+			
+			var result = JSON.parse(response);
+			for(var i in result){
+				
+				getWinners(result[i])
+			}
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin");
+		}
+	});
+	
+
+	
+}
+
+function getWinners(challenge){
+	
+	var groupBy = "";
+	if(challenge.round == "1"){
+		groupBy =  "county";
+	}
+	
+	if(challenge.round == "2"){
+		groupBy =  "state";
+	}
+	
+	if(challenge.round == "3"){
+		groupBy =  "state";
+	}
+	
+	
+	var data = {cid : challenge.id , groupBy : groupBy } ;
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "getWinners",
+			data : data
+		},
+		success : function(response) {
+			meta.users = {} ;
+			var result  = JSON.parse(response);
+			
+			var html = "";
+			for(var i in result){
+				
+				html += '<tr>';
+			    	html += '<td> '+result[i].teamName+' </td> ';
+			    	html += '<td> '+result[i].rating+' </td> ';
+			    	html += '<td> '+challenge.round+' </td> ';
+			    	html += '<td> '+challenge.name+' </td> ';
+			  	html += '</tr>';
+				
+			}
+			
+			$("#winner-body").append(html);
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin");
+		}
+	});
+	
+
+	
+}
+

@@ -415,8 +415,9 @@ function saveChallenge($data){
 	$startDate = $data["startDate"];
 	$endDate = $data["endDate"];
 	$text = $data["text"];
-	$sql  = mysql_query("INSERT INTO challenge (name,startDate,endDate,text)
-			VALUES ('$name','$startDate','$endDate','$text'   )");
+	$round = $data["round"];
+	$sql  = mysql_query("INSERT INTO challenge (name,startDate,endDate,text,round)
+			VALUES ('$name','$startDate','$endDate','$text','$round'    )");
 	if(! $sql )
 	{
 		die('Could not enter data: ' . mysql_error());

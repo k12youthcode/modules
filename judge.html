@@ -38,6 +38,10 @@
 				<button id="history-btn" onclick="switchView('links')"
 					style="display: none;" class="btn btn-lg btn-primary  signup-btn"
 					type="button">Rate Links</button>
+					<button id="changeStatus-btn"  data-toggle="modal"
+					data-target="#loadWinners"
+					class="btn btn-lg btn-primary  signup-btn" onclick="getTodaysChallenge()" type="button">View Winners
+				</button>
 				<div class="row">
 
 					<div
@@ -113,7 +117,35 @@
 	</div>
 
 
+<!--winner list POP UP -->
+	<div class="modal fade" id="loadWinners" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Winner list</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							   <tr>
+							     <th>Team</th>
+							     <th>Rating</th>
+							     <th>Round</th>
+							     <th>Challenge</th>
+							   </tr>
+							 </thead>
+							  <tbody id="winner-body">
+							
+					
+							  </tbody>
+					  </table>
 
+				</div>
+				
+			</div>
+		</div>
+	</div>
 
 	<div id="footer"></div>
 

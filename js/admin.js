@@ -75,6 +75,9 @@ function saveChallenge(){
 	data.name = $("#chalng-name").val();
 	data.startDate = new Date($("#startDate").val()).toISOString();
 	data.endDate =   new Date($("#endDate").val()).toISOString();
+	data.round = $("#round-dd").val();
+	
+	
 	data.text = $("#chalng-txt").val();
 	
 	
