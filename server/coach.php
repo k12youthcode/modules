@@ -14,6 +14,23 @@ if($type == "saveTeam")
 	saveTeam($data);
 }
 
+if($type == "getCompletedChallenges")
+{
+	getCompletedChallenges($data);
+}
+
+
+
+if($type == "loadRounds")
+{
+	loadRounds();
+}
+
+if($type == "changeChallangesNumber")
+{
+	changeChallangesNumber($data);
+}
+
 if($type == "changeStatus")
 {
 	changeStatus($data);
@@ -99,6 +116,20 @@ function changeStatus($data){
 
 
 	$sql  = mysql_query(" UPDATE  users SET status = '$state'  WHERE  id = '$id' ");
+	if(! $sql )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		echo "Success";
+	}
+}
+
+function changeChallangesNumber($data){
+
+	$id = $data["id"];
+	$number = $data["number"];
+	
+	$sql  = mysql_query(" UPDATE  rounds SET challenges = '$number'  WHERE  id = '$id' ");
 	if(! $sql )
 	{
 		die('Could not enter data: ' . mysql_error());
@@ -541,6 +572,53 @@ function getTodaysChallenge(){
 	echo json_encode($array);
 }
 
+function loadRounds(){
+	
+
+	$array = array();
+	$sql = " SELECT * FROM rounds   ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+
+	
+
+	echo json_encode($array);
+}
+
+function getCompletedChallenges(){
+
+	$array = array();
+	$sql = " SELECT  COUNT(c.id) AS counter , c.`round` FROM   challenge c  WHERE DATE(c.endDate) <= CURDATE() GROUP BY c.round   ";
+	$retval = mysql_query( $sql );
+	
+	if(! $retval )
+	{
+		die('Could not enter data: ' . mysql_error());
+	}else {
+		
+		while($row = mysql_fetch_assoc($retval))
+		{
+			$array[] = $row;
+		}
+		
+	}
+
+	
+
+	echo json_encode($array);
+
+}
 
 
 ?>

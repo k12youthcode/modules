@@ -304,3 +304,70 @@ function changeStatus(element){
 	
 	
 }
+
+function openRoundsPopup(){
+
+	var result  = meta.rounds;
+	var html = "";
+	for(var i in result){
+		
+		html += '<tr>';
+	    	html += '<td> '+result[i].round+' </td> ';
+
+	    	html += '<td> <input data-id='+result[i].id+' value='+result[i].challenges+' onchange="changeChallanges(this)" / >  </td> ';
+
+	  	html += '</tr>';
+		
+	}
+	
+	$("#round-body").html(html);
+	
+	
+}
+
+function changeChallanges(element){
+	
+	var id = $(element).data("id");
+	var number =  Number($(element).val());
+	var data = { id : id , number : number} ;
+	// update meta 
+	
+	for(var i in meta.rounds){
+		
+		if(meta.rounds[i].id == id ){
+			meta.rounds[i].challenges = number ;
+		}
+	}
+	
+	
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "changeChallangesNumber",
+			data : data
+		},
+		success : function(response) {
+			
+			
+		
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+	
+}
+
+function openCreateChallengePP(){
+	var html = "";
+	for(var i in meta.rounds){
+		
+		html += '<option value='+meta.rounds[i].id+'>'+meta.rounds[i].round+'</option>' ;
+	
+	}
+	
+	$("#round-dd").html(html);
+}

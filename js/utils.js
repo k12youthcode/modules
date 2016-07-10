@@ -213,7 +213,7 @@ function loadUsers(){
 			meta.challenges = JSON.parse(response);
 			$("#challenge-txt").html("No challenge available");
 			createChallengeTextHtml();
-			//loadChallengeText();
+			loadRounds();
 
 		},
 		error : function(data) {
@@ -223,24 +223,20 @@ function loadUsers(){
 	
 }
 
-function loadChallengeText(){
+function loadRounds(){
 	
 	$.ajax({
 		type : 'POST',
 		url : 'server/coach.php',
 		data : {
-			type : "loadChallengeText",
+			type : "loadRounds",
 			data : ""
 		},
 		success : function(response) {
-			$("#challenge-txt").html("No challenge available");
-			meta.challengesText = {} ;
-			meta.challengesText = JSON.parse(response);
-			createChallengeTextHtml();
+			meta.rounds = {} ;
+			meta.rounds = JSON.parse(response);
+			getCompleteChallenges();
 
-		},
-		error : function(data) {
-			alert("Server Error please contact admin");
 		}
 	});
 	
@@ -296,7 +292,14 @@ function getTodaysChallenge(){
 function getWinners(challenge){
 	
 	var groupBy = "";
+	
+	if(!isRoundCompleted(challenge.round)){
+		return ;
+	}
+	
 	if(challenge.round == "1"){
+		
+		
 		groupBy =  "county";
 	}
 	
@@ -345,3 +348,46 @@ function getWinners(challenge){
 	
 }
 
+function getCompleteChallenges(){
+	
+	var data = { };
+	$.ajax({
+		type : 'POST',
+		url : 'server/coach.php',
+		data : {
+			type : "getCompletedChallenges",
+			data : ""
+		},
+		success : function(response) {
+				
+				meta.comletedChallenges = {} ;
+				meta.completedChallenges = JSON.parse(response);
+
+		},
+		error : function(data) {
+			alert("Server Error please contact admin")
+		}
+	});
+	
+}
+
+
+function isRoundCompleted(round){
+	
+	var roundChallanges = 0 ;
+	for(var i in meta.rounds){
+		if(round == meta.rounds[i].round){
+			roundChallanges = meta.rounds[i].challenges ;
+		}
+	}
+	
+	for(var i in meta.completedChallenges){
+		if(round == meta.completedChallenges[i].round){
+			if(roundChallanges == meta.completedChallenges[i].counter){
+				return true ;
+			} 
+		}
+	}
+	
+	return false ;
+}

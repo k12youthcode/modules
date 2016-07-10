@@ -37,7 +37,7 @@
 
 		<div id="main">
 			<div class="container">
-				<button id="link-btn"  data-toggle="modal"
+				<button id="link-btn"  data-toggle="modal" onclick="openCreateChallengePP()"
 					data-target="#addChallenge"
 					class="btn btn-lg btn-primary  signup-btn" type="button">Create Challenge
 				</button>
@@ -57,6 +57,10 @@
 					data-target="#loadWinners"
 					class="btn btn-lg btn-primary  signup-btn" onclick="getTodaysChallenge()" type="button">View Winners
 				</button>
+				<button id="rounds-btn"  data-toggle="modal"
+					data-target="#loadRounds"
+					class="btn btn-lg btn-primary  signup-btn" onclick="openRoundsPopup()" type="button">Rounds
+				</button>
 			<!-- 	<button id="challengeText-btn"  data-toggle="modal"
 					data-target="#challengeText"
 					class="btn btn-lg btn-primary  signup-btn" onclick="" type="button">Upload Challenge Text
@@ -73,7 +77,36 @@
 
 
 
+<!--Rounds POP UP -->
+	<div class="modal fade" id="loadRounds" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					
+					<h4 class="modal-title" > Rounds</h4>
+				</div>
+				<div class="modal-body">
+					  <table class="table">
+					  	   <thead>
+							   <tr>
+							     <th>Round</th>
+							     <th># Challenge</th>
+							   </tr>
+							 </thead>
+							  <tbody id="round-body">
+							
+					
+							  </tbody>
+					  </table>
 
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				
+			</div>
+		</div>
+	</div>
 <!--winner list POP UP -->
 	<div class="modal fade" id="loadWinners" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -227,9 +260,7 @@
 						<div class="form-group">
 						<div class="input-group date" >
 							<select id="round-dd">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
+						
 							</select>
 						</div>
 						</div>
