@@ -123,6 +123,17 @@ CREATE TABLE `mytable` (
   PRIMARY KEY (`state_abv`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+/*Table structure for table `rounds` */
+
+DROP TABLE IF EXISTS `rounds`;
+
+CREATE TABLE `rounds` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `round` varchar(255) DEFAULT NULL,
+  `challenges` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
 /*Table structure for table `state` */
 
 DROP TABLE IF EXISTS `state`;
